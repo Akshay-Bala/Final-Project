@@ -10,13 +10,17 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+ 
+ //Form passing
+ 
   var formkey = GlobalKey<FormState>();
 
   ValueNotifier<bool> visibility1=ValueNotifier<bool>(true);
 
   ValueNotifier<bool> visibility2=ValueNotifier<bool>(true);
 
-  //controllers
+  //Controllers
+
   final TextEditingController fistnameController = TextEditingController();
 
   final TextEditingController lastnameController = TextEditingController();

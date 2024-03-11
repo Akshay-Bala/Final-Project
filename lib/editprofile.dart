@@ -61,6 +61,12 @@ Editprofile({Key? key}) : super(key: key);
                     ),
                      SizedBox(height: 20),
                     TextFormField(
+                      validator: (value) {
+                        if (value.toString().isEmpty){
+                          return 'invalid';
+                        }
+                        return null;
+                      },
                       decoration: const InputDecoration(
                           label: Text("Last name"), prefixIcon: Icon(Icons.person)),
                     ),
