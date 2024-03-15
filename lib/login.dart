@@ -1,6 +1,7 @@
 import 'package:potholedetect/custom_widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:potholedetect/registration.dart';
+import 'package:potholedetect/userhome.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
@@ -12,9 +13,10 @@ class Login extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           title: Text("POTHOLE"),
+          foregroundColor: Color.fromARGB(255, 242, 242, 244),
           centerTitle: true, // title on the centre
           backgroundColor:
-              const Color.fromARGB(255,47,79,79), //appbar color
+              Color.fromARGB(255, 6, 7, 0), //appbar color
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -34,6 +36,7 @@ class Login extends StatelessWidget {
                       return null;
                     },
                     label: "Username",
+                    
                   ),
                   SizedBox(
                     height: 5,
@@ -61,7 +64,9 @@ class Login extends StatelessWidget {
                   Align(
                       alignment: Alignment.bottomRight,
                       child: TextButton(
-                          onPressed: () {}, child: Text('Forgot password..?'))),
+                          onPressed: () {
+                            
+                          }, child: Text('Forgot password..?'))),
                   SizedBox(
                     height: 50,
                   ),
@@ -70,6 +75,7 @@ class Login extends StatelessWidget {
                       width: 200,
                       child: ElevatedButton(
                           onPressed: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Userhome()));
                             if (formkey.currentState!.validate()) {
                               print("jgfv");
                             }

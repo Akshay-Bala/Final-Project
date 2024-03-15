@@ -178,9 +178,9 @@ Future<Position> _determinePosition() async {
                     },
                     
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.redAccent.withOpacity(0.1),
+                      backgroundColor: Color.fromARGB(255, 47, 79, 79),
                       elevation: 0,
-                      foregroundColor: Colors.red,
+                      foregroundColor: Colors.black,
                       shape: const StadiumBorder(),
                       side: BorderSide.none,
                     ),

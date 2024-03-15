@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:potholedetect/UpdateProfileScreen.dart';
+import 'package:potholedetect/bottomNavScreen.dart';
 import 'package:potholedetect/editprofile.dart';
+import 'package:potholedetect/models/notification.dart';
 import 'package:potholedetect/reportaccidentarea.dart';
 import 'package:potholedetect/reportpothole.dart';
 import 'package:potholedetect/userhome.dart';
@@ -42,7 +44,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: Reportpothole(),
+      home: 
+      //Notifications()
+      //Notifications()
+      BottomnavScreen()
+      //Login(),
     );
   }
 }

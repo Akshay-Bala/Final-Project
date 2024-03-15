@@ -39,6 +39,7 @@ dependencies:
   line_awesome_flutter:
   image_picker: ^1.0.7
   geolocator: ^11.0.0
+  motion_tab_bar: ^2.0.4
 
 dev_dependencies:
   flutter_test:

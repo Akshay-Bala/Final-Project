@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:potholedetect/editprofile.dart';
 
 class UpdateProfileScreen extends StatelessWidget {
   const UpdateProfileScreen({Key? key}) : super(key: key);
@@ -8,8 +9,9 @@ class UpdateProfileScreen extends StatelessWidget {
    // final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 47, 79, 79),
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.verified_user)),
-        title: Text('UPDATE PROFILE', style: Theme.of(context).textTheme.headline4),
+        title: Text('PROFILE', style: Theme.of(context).textTheme.headline4),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -26,17 +28,17 @@ class UpdateProfileScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                         child: const Image(image: AssetImage('assets/images/bg.jpg'))),
                   ),
-                  Positioned(
-                    bottom: 0,
-                    right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.black),
-                      child: const Icon(Icons.camera, color: Colors.brown, size: 20),
-                    ),
-                  ),
+                  // Positioned(
+                  //   bottom: 0,
+                  //   right: 0,
+                  //   child: Container(
+                  //     width: 35,
+                  //     height: 35,
+                  //     decoration:
+                  //     BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.black),
+                  //     child: const Icon(Icons.camera, color: Colors.brown, size: 20),
+                  //   ),
+                  // ),
                 ],
               ),
               const SizedBox(height: 50),
@@ -87,12 +89,14 @@ class UpdateProfileScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                           Navigator.push(context, MaterialPageRoute(builder: (context)=>Editprofile()));
+                        },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 38, 135, 234),
+                            backgroundColor: Color.fromARGB(255, 47, 79, 79),
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child: const Text('Save', style: TextStyle(color: Colors.black)),
+                        child: const Text('Edit', style: TextStyle(color: Colors.black)),
                       ),
                     ),
                     const SizedBox(height: 20),
@@ -112,16 +116,16 @@ class UpdateProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.redAccent.withOpacity(0.1),
-                              elevation: 0,
-                              foregroundColor: Colors.red,
-                              shape: const StadiumBorder(),
-                              side: BorderSide.none),
-                          child: const Text('Clear'),
-                        ),
+                        // ElevatedButton(
+                        //   onPressed: () {},
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: Colors.redAccent.withOpacity(0.1),
+                        //       elevation: 0,
+                        //       foregroundColor: Colors.red,
+                        //       shape: const StadiumBorder(),
+                        //       side: BorderSide.none),
+                        //   child: const Text('Clear'),
+                        // ),
                       ],
                     )
                   ],

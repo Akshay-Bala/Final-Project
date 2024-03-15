@@ -1,16 +1,32 @@
  import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:potholedetect/UpdateProfileScreen.dart';
+import 'package:potholedetect/bottomNavScreen.dart';
+import 'package:potholedetect/userhome.dart';
 
 class Editprofile extends StatelessWidget {
 Editprofile({Key? key}) : super(key: key);
   
 //  // String profile;
+  Future<void> _pickImage(ImageSource source) async {
+    final pickedFile = await ImagePicker().pickImage(source: source);
 
+    if (pickedFile != null) {
+      _pickedImagePath = pickedFile.path;
+  //     setState(() {
+  //       _pickedImagePath = pickedFile.path;
+  //     });
+    }
+  }
+
+  String? _pickedImagePath;
 
   @override
   Widget build(BuildContext context) {
    // final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 47, 79, 79),
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
         title: Text('EDIT PROFILE', style: Theme.of(context).textTheme.headline4),
       ),
@@ -33,12 +49,15 @@ Editprofile({Key? key}) : super(key: key);
                   Positioned(
                     bottom: 0,
                     right: 0,
-                    child: Container(
-                      width: 35,
-                      height: 35,
-                      decoration:
-                      BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.black),
-                      child: const Icon(Icons.camera, color: Colors.brown, size: 20),
+                    child: InkWell(
+                      onTap: () => _pickImage(ImageSource.gallery),
+                      child: Container(
+                        width: 35,
+                        height: 35,
+                        decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.black),
+                        child: const Icon(Icons.camera, color: Colors.brown, size: 20),
+                      ),
                     ),
                   ),
                 ],
@@ -101,9 +120,11 @@ Editprofile({Key? key}) : super(key: key);
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
+                        },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 38, 135, 234),
+                            backgroundColor: Color.fromARGB(255, 47, 79, 79),
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
                         child: const Text('Save', style: TextStyle(color: Colors.black)),
@@ -115,27 +136,27 @@ Editprofile({Key? key}) : super(key: key);
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Text.rich(
-                          TextSpan(
-                            text: 'Date',
-                            style: TextStyle(fontSize: 12),
-                            children: [
-                              TextSpan(
-                                  text: '  JoinedAt',
-                                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
-                            ],
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {},
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: Colors.redAccent.withOpacity(0.1),
-                              elevation: 0,
-                              foregroundColor: Colors.red,
-                              shape: const StadiumBorder(),
-                              side: BorderSide.none),
-                          child: const Text('Clear'),
-                        ),
+                        // const Text.rich(
+                        //   TextSpan(
+                        //     text: 'Date',
+                        //     style: TextStyle(fontSize: 12),
+                        //     children: [
+                        //       TextSpan(
+                        //           text: '  JoinedAt',
+                        //           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
+                        //     ],
+                        //   ),
+                        // ),
+                        // ElevatedButton(
+                        //   onPressed: () {},
+                        //   style: ElevatedButton.styleFrom(
+                        //       backgroundColor: Colors.redAccent.withOpacity(0.1),
+                        //       elevation: 0,
+                        //       foregroundColor: Colors.red,
+                        //       shape: const StadiumBorder(),
+                        //       side: BorderSide.none),
+                        //   child: const Text('Clear'),
+                        // ),
                       ],
                     )
                   ],
