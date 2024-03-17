@@ -10,13 +10,13 @@ class Notifications extends StatelessWidget {
       appBar: AppBar(
         title: Row(
           children: [
-            Text('Notifications'),
+            Text('Notifications',style: TextStyle(color: Colors.white),),
             Icon(Icons.notifications),
             
           ],
         ),
-        iconTheme: IconThemeData(color: Color.fromARGB(255, 0, 0, 0)),
-        backgroundColor: Color.fromARGB(255, 47, 79, 79),
+        iconTheme: IconThemeData(color: Color.fromARGB(255, 248, 249, 249)),
+        backgroundColor: Color.fromARGB(255, 31, 2, 145),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -33,7 +33,7 @@ class Notifications extends StatelessWidget {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children:[Text('--------- hjbjhkj hijilko jhjjkl jnjknkb kjhkjkljkl kjjkjklj hjbjj'),
+                      children:[Text(' hjbjhkj hijilko jhjjkl jnjknkb kjhkjkljkl kjjkjklj hjbjj'),
                       SizedBox(height: 5,),
                       Text("15-03-2024  7:56 AM"),
                       SizedBox(height: 5,)

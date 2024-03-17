@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:potholedetect/bottomNavScreen.dart';
 import 'package:potholedetect/main.dart';
 
 
@@ -86,9 +87,9 @@ Future<Position> _determinePosition() async {
       appBar: AppBar(
         title: Text(
           'Report Accident area',
-          style: Theme.of(context).textTheme.headline4,
+          style: TextStyle(color: Color.fromARGB(255, 248, 249, 249)),
         ),
-        backgroundColor: Color.fromARGB(255, 47, 79, 79),
+        backgroundColor: Color.fromARGB(255, 31, 2, 145),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -160,7 +161,7 @@ Future<Position> _determinePosition() async {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
-                      'Invalid',
+                      'Fill the field',
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -170,6 +171,7 @@ Future<Position> _determinePosition() async {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
                       if (formkey.currentState!.validate() && selectedImage!=null ) {
                         print('bhiakddj');
                       } else {
@@ -178,9 +180,9 @@ Future<Position> _determinePosition() async {
                     },
                     
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 47, 79, 79),
+                      backgroundColor: Color.fromARGB(255, 31, 2, 145),
                       elevation: 0,
-                      foregroundColor: Colors.black,
+                      foregroundColor: Colors.white,
                       shape: const StadiumBorder(),
                       side: BorderSide.none,
                     ),

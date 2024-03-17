@@ -54,7 +54,9 @@ class _RegistrationState extends State<Registration> {
           title: Text("REGISTRATION FORM"),
           centerTitle: true, // title on the centre
           backgroundColor:
-              const Color.fromARGB(255,47,79,79), //appbar color
+              const Color.fromARGB(255, 31, 2, 145),
+              foregroundColor:
+               Color.fromARGB(255, 248, 249, 250), //appbar color
         ),
         body: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -68,7 +70,7 @@ Row(children: [Container(width: mediaquery.width/2-23,
                     controller: fistnameController,
                     validator: (value) {
                       if (value.toString().isEmpty) {
-                        return 'invalid';
+                        return 'Enter your first name';
                       }
                       return null;
                     },
@@ -83,7 +85,7 @@ Row(children: [Container(width: mediaquery.width/2-23,
                     controller: lastnameController,
                     validator: (value) {
                       if (value.toString().isEmpty) {
-                        return 'invalid';
+                        return 'Enter your last name';
                       }
                       return null;
                     },
@@ -158,7 +160,7 @@ SizedBox(
                   validator: (value)
                    {
                   if (value.toString().isEmpty) {
-                    return 'invalid';
+                    return 'Enter ypur phone number';
                 } else if (!RegExp(r'^[0-9]+$').hasMatch(value.toString())) {
                     return 'incorrect';
                 }
@@ -177,7 +179,7 @@ SizedBox(
                   controller: emailController,
                    validator: (value) {
                     if (value.toString().isEmpty) {
-                       return 'invalid';
+                       return 'Enter your e-mail id';
                      } else if (!RegExp(r'^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-z]+$').hasMatch(value.toString())) {
                        return 'incorrect';
                    }
@@ -193,7 +195,7 @@ SizedBox(
                   validator: (value)
                    {
                   if (value.toString().isEmpty) {
-                    return 'invalid';
+                    return 'Enter your adhaar number';
                 } else if (!RegExp(r'^[0-9]+$').hasMatch(value.toString())) {
                     return 'incorrect';
                 }
@@ -213,7 +215,7 @@ ValueListenableBuilder(valueListenable: visibility1, builder: (context, value, c
                     controller: passController,
                   validator: (value) {
                     if (value.toString().isEmpty) {
-                      return 'invalid';
+                      return 'Enter your password';
                     }
                     else if (value.length <8) {
                      return 'Length should be minimum 8 characters';
@@ -238,7 +240,7 @@ ValueListenableBuilder(valueListenable: visibility1, builder: (context, value, c
               controller: cpassController,
                   validator: (value) {
                     if (value.toString().isEmpty) {
-                      return 'invalid';
+                      return 'Enter your password again to confirm';
                     }
                     else if(value.length <8)
                     {
@@ -271,7 +273,7 @@ ValueListenableBuilder(valueListenable: visibility1, builder: (context, value, c
                     width: 200,
                     child: ElevatedButton(
                         onPressed: () {
-
+                          Navigator.push(context,MaterialPageRoute(builder: (context)=> Login()));
                           if (formkey.currentState!.validate() && isDobSelected == true) {
                             print("jgfv");
                           }
@@ -292,7 +294,7 @@ ValueListenableBuilder(valueListenable: visibility1, builder: (context, value, c
                         child: Text("Register"),
                         style: ElevatedButton.styleFrom(
                             backgroundColor:
-                                const Color.fromARGB(255, 54, 244, 143),
+                                const Color.fromARGB(255, 31, 2, 145),
                             foregroundColor:
                                 Color.fromARGB(255, 237, 237, 237)))),
                 TextButton(onPressed: () {

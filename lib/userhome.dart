@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:potholedetect/login.dart';
 import 'package:potholedetect/reportaccidentarea.dart';
 import 'package:potholedetect/reportpothole.dart';
 import 'package:potholedetect/widgets/devicecard.dart';
@@ -25,18 +26,33 @@ class _UserhomeState extends State<Userhome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        iconTheme: IconThemeData(color: Color.fromARGB(255, 241, 242, 242)),
-        backgroundColor: Color.fromARGB(255, 47, 79, 79),
-        //actions: [IconButton(onPressed: (){}, icon:Icon(Icons.person),)],
+  iconTheme: IconThemeData(color: Color.fromARGB(255, 248, 249, 249)),
+  backgroundColor: Color.fromARGB(255, 31, 2, 145),
+  actions: [
+    Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10.0),
+      child: Text(
+        'Logout',
+        style: TextStyle(color: Colors.white),
       ),
+    ),
+    IconButton(
+      onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+      },
+      icon: Icon(Icons.logout),
+    ),
+  ],
+),
+
       body: Container(
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [
-              Color.fromARGB(255, 229, 227, 238),
-              Color.fromARGB(255, 47, 79, 79),
+              Color.fromARGB(255, 248, 249, 249),
+              Color.fromARGB(255, 31, 2, 145),
             ])),
         child: Column(
           children: [
@@ -46,7 +62,7 @@ class _UserhomeState extends State<Userhome> {
               },
               child: DeviceCard(
                 
-                activeColor:Colors.brown,
+                activeColor:Colors.yellow,
                 deviceIcon: Icons.warning_rounded,
                 connectionIcon: Icons.add_a_photo_sharp,
                 title: 'Report Potholes',
@@ -65,7 +81,7 @@ class _UserhomeState extends State<Userhome> {
 
               },
               child: DeviceCard(
-                  activeColor: Colors.brown,
+                  activeColor: Colors.yellow,
                   deviceIcon: Icons.warning_rounded,
                   connectionIcon: Icons.add_a_photo_sharp,
                   initialActiveState: false,
@@ -79,7 +95,7 @@ class _UserhomeState extends State<Userhome> {
             ),
             DeviceCard(
             //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),
-                activeColor: Colors.brown,
+                activeColor: Colors.yellow,
                 deviceIcon: Icons.warning_rounded,
                 connectionIcon: Icons.add_alert,
                 initialActiveState: false,

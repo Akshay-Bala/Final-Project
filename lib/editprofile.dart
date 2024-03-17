@@ -26,9 +26,10 @@ Editprofile({Key? key}) : super(key: key);
    // final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 47, 79, 79),
+        backgroundColor: Color.fromARGB(255, 31, 2, 145),
+        foregroundColor: Color.fromARGB(255, 249, 250, 251),
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.edit)),
-        title: Text('EDIT PROFILE', style: Theme.of(context).textTheme.headline4),
+        title: Text('EDIT PROFILE',style: TextStyle(color: Color.fromARGB(255, 248, 249, 249)),),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -56,7 +57,7 @@ Editprofile({Key? key}) : super(key: key);
                         height: 35,
                         decoration:
                         BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.black),
-                        child: const Icon(Icons.camera, color: Colors.brown, size: 20),
+                        child: const Icon(Icons.camera, color: Colors.white, size: 20),
                       ),
                     ),
                   ),
@@ -124,10 +125,10 @@ Editprofile({Key? key}) : super(key: key);
                           Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 47, 79, 79),
+                            backgroundColor: Color.fromARGB(255, 31, 2, 145),
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child: const Text('Save', style: TextStyle(color: Colors.black)),
+                        child: const Text('Save', style: TextStyle(color: Colors.white)),
                       ),
                     ),
                     const SizedBox(height: 20),

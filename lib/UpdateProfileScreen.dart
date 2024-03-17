@@ -9,9 +9,9 @@ class UpdateProfileScreen extends StatelessWidget {
    // final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 47, 79, 79),
+        backgroundColor: Color.fromARGB(255, 31, 2, 145),
         leading: IconButton(onPressed: () {}, icon: const Icon(Icons.verified_user)),
-        title: Text('PROFILE', style: Theme.of(context).textTheme.headline4),
+        title: Text('PROFILE', style: TextStyle(color: Color.fromARGB(255, 248, 249, 249))),
       ),
       body: SingleChildScrollView(
         child: Container(
@@ -93,10 +93,10 @@ class UpdateProfileScreen extends StatelessWidget {
                            Navigator.push(context, MaterialPageRoute(builder: (context)=>Editprofile()));
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: Color.fromARGB(255, 47, 79, 79),
+                            backgroundColor: Color.fromARGB(255, 31, 2, 145),
                             side: BorderSide.none,
                             shape: const StadiumBorder()),
-                        child: const Text('Edit', style: TextStyle(color: Colors.black)),
+                        child: const Text('Edit', style: TextStyle(color: Colors.white)),
                       ),
                     ),
                     const SizedBox(height: 20),
