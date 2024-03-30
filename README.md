@@ -1,4 +1,4 @@
-# potholedetect
+# SMART SAFETY DRIVING WITH DETECTION OF POTHOLES
 
 A new Flutter project.
 
