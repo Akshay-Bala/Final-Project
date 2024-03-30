@@ -27,6 +27,8 @@ class _RegistrationState extends State<Registration> {
 
   final TextEditingController PhoneController = TextEditingController();
 
+  final TextEditingController addresscontroller = TextEditingController();
+
   final TextEditingController emailController = TextEditingController();
 
   final TextEditingController passController = TextEditingController();
@@ -65,6 +67,7 @@ class _RegistrationState extends State<Registration> {
             child: ListView(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                
 Row(children: [Container(width: mediaquery.width/2-23,
                   child: customtextfield(
                     controller: fistnameController,
@@ -154,6 +157,18 @@ SizedBox(
                 ),
 
                 SizedBox(height: 5),
+
+                customtextfield(
+                    controller: addresscontroller,
+                    validator: (value) {
+                      if (value.toString().isEmpty) {
+                        return 'Enter your address';
+                      }
+                      return null;
+                    },
+                    label: "Address",
+                  ),
+                  SizedBox(height:5),
                 
                 customtextfield(
                   controller: PhoneController,

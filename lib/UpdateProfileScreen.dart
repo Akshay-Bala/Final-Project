@@ -10,7 +10,7 @@ class UpdateProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 31, 2, 145),
-        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.verified_user)),
+        leading: IconButton(onPressed: () {}, icon: const Icon(Icons.verified_rounded,color: Colors.white,)),
         title: Text('PROFILE', style: TextStyle(color: Color.fromARGB(255, 248, 249, 249))),
       ),
       body: SingleChildScrollView(
@@ -50,13 +50,13 @@ class UpdateProfileScreen extends StatelessWidget {
                     TextFormField(
                       readOnly: true,
                       decoration: const InputDecoration(
-                          label: Text("First Name"), prefixIcon: Icon(Icons.person)),
+                          label: Text("Full Name"), prefixIcon: Icon(Icons.person)),
                     ),
                      SizedBox(height: 20),
                     TextFormField(
                       readOnly: true,
                       decoration: const InputDecoration(
-                          label: Text("Last name"), prefixIcon: Icon(Icons.person)),
+                          label: Text("Address"), prefixIcon: Icon(Icons.house)),
                     ),
                      SizedBox(height: 20),
                      TextFormField(

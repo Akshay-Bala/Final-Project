@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:potholedetect/login.dart';
 import 'package:potholedetect/reportaccidentarea.dart';
 import 'package:potholedetect/reportpothole.dart';
+import 'package:potholedetect/reports.dart';
 import 'package:potholedetect/widgets/devicecard.dart';
 
 class Userhome extends StatefulWidget {
@@ -93,15 +94,20 @@ class _UserhomeState extends State<Userhome> {
             SizedBox(
               height: 10,
             ),
-            DeviceCard(
-            //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),
-                activeColor: Colors.yellow,
-                deviceIcon: Icons.warning_rounded,
-                connectionIcon: Icons.add_alert,
-                initialActiveState: false,
-                //isActive:true ,
-                title: 'View Report Status',
-                subtitle: 'Current status of the reported complaints')
+            InkWell(
+              onTap: (){
+                navigation:Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reports(),));
+              },
+              child: DeviceCard(
+              //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),
+                  activeColor: Colors.yellow,
+                  deviceIcon: Icons.warning_rounded,
+                  connectionIcon: Icons.add_alert,
+                  initialActiveState: false,
+                  //isActive:true ,
+                  title: 'View Report Status',
+                  subtitle: 'Current status of the reported complaints'),
+            )
           ],
         ),
       ),

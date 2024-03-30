@@ -6,6 +6,7 @@ import 'package:potholedetect/forgetpassword.dart';
 import 'package:potholedetect/models/notification.dart';
 import 'package:potholedetect/reportaccidentarea.dart';
 import 'package:potholedetect/reportpothole.dart';
+import 'package:potholedetect/reports.dart';
 import 'package:potholedetect/userhome.dart';
 import 'package:potholedetect/api.dart';
 import 'package:potholedetect/api2.dart';
@@ -46,6 +47,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: Login()
+      //Reports()
       //ForgotPassword()
       //Notifications()
       //Notifications()

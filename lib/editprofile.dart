@@ -92,6 +92,17 @@ Editprofile({Key? key}) : super(key: key);
                     ),
                      SizedBox(height: 20),
                      TextFormField(
+                      validator: (value){
+                        if (value.toString().isEmpty){
+                          return 'invalid';
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                          label: Text("Address"), prefixIcon: Icon(Icons.home)),
+                    ),
+                     SizedBox(height: 20),
+                     TextFormField(
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Gender"),prefixIcon: Icon(Icons.person)),
