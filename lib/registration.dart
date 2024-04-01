@@ -39,12 +39,12 @@ class _RegistrationState extends State<Registration> {
 
   Color bC = Colors.black26;
 
-  String selectedValue = 'Male';
+  String selectedValue = '';
   String selectedDob = 'Select DOB';
   bool isDobSelected = false;
 
   final dropdownItem = [
-    'Male','Female','Other'
+    "",'Male','Female','Other'
   ];
 
   @override
@@ -112,16 +112,21 @@ SizedBox(
                     border: Border.all(),
                     borderRadius: BorderRadius.circular(10)
                   ),
-                  child: DropdownButton(
-                   // padding: EdgeInsets.all(10),
-                    borderRadius: BorderRadius.circular(10),
-                    value: selectedValue,
-                    items: dropdownItem.map((e) => DropdownMenuItem(child: Text(e),value: e,)).toList(),
-                    onChanged: (value) {
-                    setState(() {
-                      selectedValue = value!;
-                    });
-                  }),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(8.0,0,8,0),
+                    child: DropdownButton(
+                      isExpanded: true,
+                      //underline: ,
+                      //padding: EdgeInsets.all(10),
+                      borderRadius: BorderRadius.circular(10),
+                      value: selectedValue,
+                      items: dropdownItem.map((e) => DropdownMenuItem(child: Text(e),value: e,)).toList(),
+                      onChanged: (value) {
+                      setState(() {
+                        selectedValue = value!;
+                      });
+                    }),
+                  ),
                 ),
 SizedBox(
                   height: 5,
@@ -145,14 +150,18 @@ SizedBox(
                   },
                   child: Container(
                     
-                    height: 50,
+                    height: 60,
                     decoration: BoxDecoration(
                       border: Border.all(
-                        color: bC
+                        color: Colors.black54
                       ),
                       borderRadius: BorderRadius.circular(10)
                     ),
-                    child:  Text("DOB : $selectedDob" ),
+                    child:  Row(
+                      children: [
+                        SizedBox(width: 20,),Text("DOB",style: TextStyle(fontSize: 14),),SizedBox(width: 5,),Text(":",style: TextStyle(fontSize: 14),),SizedBox(width: 10,), Text(" $selectedDob" )
+                      ],
+                    ),
                   ),
                 ),
 

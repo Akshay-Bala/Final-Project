@@ -25,56 +25,52 @@ class _ReportpotholeState extends State<Reportaccidentarea> {
 /// When the location services are not enabled or permissions
 /// are denied the `Future` will return an error.
 Future<Position> _determinePosition() async {
+  print(" here here");
   bool serviceEnabled;
   LocationPermission permission;
-
   // Test if location services are enabled.
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
   if (!serviceEnabled) {
-    // Location services are not enabled don't continue
-    // accessing the position and request users of the 
-    // App to enable the location services.
+    //permission = await Geolocator.requestPermission();
     return Future.error('Location services are disabled.');
   }
-
-  permission = await Geolocator.checkPermission();
-  if (permission == LocationPermission.denied) {
-    permission = await Geolocator.requestPermission();
+  else{
+    permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
-      // Permissions are denied, next time you could try
-      // requesting permissions again (this is also where
-      // Android's shouldShowRequestPermissionRationale 
-      // returned true. According to Android guidelines
-      // your App should show an explanatory UI now.
+    //permission = await Geolocator.requestPermission();
+    }
+    if (permission == LocationPermission.denied) {
       return Future.error('Location permissions are denied');
     }
+    else{
+      return Future.error('Location permissions are enabled');
+    }
+  //   if (permission == LocationPermission.deniedForever) { 
+  //   return Future.error(
+  //     'Location permissions are permanently denied, we cannot request permissions.');
+  // }    
   }
-  
-  if (permission == LocationPermission.deniedForever) {
-    // Permissions are denied forever, handle appropriately. 
-    return Future.error(
-      'Location permissions are permanently denied, we cannot request permissions.');
-  } 
-
-  // When we reach here, permissions are granted and we can
-  // continue accessing the position of the device.
-  return await Geolocator.getCurrentPosition();
 }
 
   Future<void> _getImage() async {
-    final ImagePicker picker = ImagePicker();
-   position=await _determinePosition();
-   print(position);
-    final XFile? photo = await picker.pickImage(source: ImageSource.camera);
-
-
-    if (photo != null) {
-      setState(() {
-        selectedImage = photo;
-      });
-    } else {
-      print("failed");
+    position=await _determinePosition();
+    if (position != 'Location permissions are enabled') {
+      await Geolocator.openLocationSettings();
     }
+    print("object: $position");
+   // final ImagePicker picker = ImagePicker();
+   
+  //  print(position);
+  //   final XFile? photo = await picker.pickImage(source: ImageSource.camera);
+
+
+  //   if (photo != null) {
+  //     setState(() {
+  //       selectedImage = photo;
+  //     });
+  //   } else {
+  //     print("failed");
+  //   }
   }
 
   final TextEditingController Descriptioncontroller = TextEditingController();
@@ -106,7 +102,8 @@ Future<Position> _determinePosition() async {
                 Center(
                     child: InkWell(
                       onTap: ()async{
-                        await _getImage();
+                        _determinePosition();
+                        //await _getImage();
                       },
                       child:selectedImage==null ?Container(
                                         height: mediaquery.height *.20,
