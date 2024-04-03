@@ -57,11 +57,3 @@ class MyApp extends StatelessWidget {
   }
 }
 
-void showCustomSnackBar(BuildContext context, String message) {
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text(message),
-      duration: Duration(seconds: 2), // Adjust the duration as needed
-    ),
-  );
-}

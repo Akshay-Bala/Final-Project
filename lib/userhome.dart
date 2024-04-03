@@ -55,60 +55,62 @@ class _UserhomeState extends State<Userhome> {
               Color.fromARGB(255, 248, 249, 249),
               Color.fromARGB(255, 31, 2, 145),
             ])),
-        child: Column(
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),));
-              },
-              child: DeviceCard(
-                
-                activeColor:Colors.yellow,
-                deviceIcon: Icons.warning_rounded,
-                connectionIcon: Icons.add_a_photo_sharp,
-                title: 'Report Potholes',
-                subtitle:
-                    'Send your location of a pothole area you have encountered',
-                //onActivePressed: toggleCardActiveState(),
-                initialActiveState: false,
-              ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            InkWell(
-              onTap: () {
-                navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportaccidentarea(),));
-
-              },
-              child: DeviceCard(
-                  activeColor: Colors.yellow,
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),));
+                },
+                child: DeviceCard(
+                  
+                  activeColor:Colors.yellow,
                   deviceIcon: Icons.warning_rounded,
                   connectionIcon: Icons.add_a_photo_sharp,
-                  initialActiveState: false,
-                  //isActive: true ,
-                  title: 'Report Accident prone area',
+                  title: 'Report Potholes',
                   subtitle:
-                      'Send your location of a accident prone area you have encountered'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            InkWell(
-              onTap: (){
-                navigation:Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reports(),));
-              },
-              child: DeviceCard(
-              //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),
-                  activeColor: Colors.yellow,
-                  deviceIcon: Icons.warning_rounded,
-                  connectionIcon: Icons.add_alert,
+                      'Send your location of a pothole area you have encountered',
+                  //onActivePressed: toggleCardActiveState(),
                   initialActiveState: false,
-                  //isActive:true ,
-                  title: 'View Report Status',
-                  subtitle: 'Current status of the reported complaints'),
-            )
-          ],
+                ),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: () {
+                  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportaccidentarea(),));
+          
+                },
+                child: DeviceCard(
+                    activeColor: Colors.yellow,
+                    deviceIcon: Icons.warning_rounded,
+                    connectionIcon: Icons.add_a_photo_sharp,
+                    initialActiveState: false,
+                    //isActive: true ,
+                    title: 'Report Accident prone area',
+                    subtitle:
+                        'Send your location of a accident prone area you have encountered'),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              InkWell(
+                onTap: (){
+                  navigation:Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reports(),));
+                },
+                child: DeviceCard(
+                //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),
+                    activeColor: Colors.yellow,
+                    deviceIcon: Icons.warning_rounded,
+                    connectionIcon: Icons.add_alert,
+                    initialActiveState: false,
+                    //isActive:true ,
+                    title: 'View Report Status',
+                    subtitle: 'Current status of the reported complaints'),
+              )
+            ],
+          ),
         ),
       ),
     );

@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:potholedetect/bottomNavScreen.dart';
 import 'package:potholedetect/main.dart';
+import 'package:potholedetect/utils/common/snackbar.dart';
 
 
 class Reportpothole extends StatefulWidget {
@@ -175,7 +176,7 @@ Future<Position> _determinePosition() async {
                       if (formkey.currentState!.validate() && selectedImage!=null ) {
                         print('bhiakddj');
                       } else {
-                        showCustomSnackBar(context, "Fill all the fields");
+                        showCustomSnackBar(context, "Fill all the fields",Colors.red);
                       }
                     },
                     

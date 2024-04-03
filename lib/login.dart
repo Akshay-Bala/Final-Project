@@ -4,12 +4,16 @@ import 'package:flutter/material.dart';
 import 'package:potholedetect/forgetpassword.dart';
 import 'package:potholedetect/registration.dart';
 import 'package:potholedetect/userhome.dart';
+import 'package:potholedetect/utils/api/loginapi.dart';
 
 class Login extends StatelessWidget {
   Login({super.key});
   var formkey = GlobalKey<FormState>();
   bool visubiliity = true;
   ValueNotifier<bool> visibility=ValueNotifier(true);
+  TextEditingController usernameController=TextEditingController();
+    TextEditingController passwordController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,6 +35,7 @@ class Login extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   customtextfield(
+                    controller: usernameController,
                     validator: (value) {
                       if (value.toString().isEmpty) {
                         return 'Empty username';
@@ -45,6 +50,7 @@ class Login extends StatelessWidget {
                   ),
               ValueListenableBuilder(valueListenable: visibility, builder: (context, value, child) {
                 return  customtextfield(
+                  controller: passwordController,
                     validator: (value) {
                       if (value.toString().isEmpty) {
                         return 'Empty password';
@@ -76,10 +82,10 @@ class Login extends StatelessWidget {
                       height: 40,
                       width: 200,
                       child: ElevatedButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
+                          onPressed: () async{
+                            // Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
                             if (formkey.currentState!.validate()) {
-                              print("jgfv");
+                            await  loginUser(usernameController.text,passwordController.text,context);
                             }
                           },
                           child: Text("Login"),

@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:image_picker/image_picker.dart';
 import 'package:potholedetect/custom_widgets/textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:potholedetect/login.dart';
@@ -12,6 +15,21 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
  
  //Form passing
+
+ File _image=File('Profile photo') ;
+
+  // This is the image picker
+  final _picker = ImagePicker();
+  // Implementing the image picker
+  Future<void> _openImagePicker() async {
+    final XFile? pickedImage =
+        await _picker.pickImage(source: ImageSource.gallery);
+        // print(_image!.path??'null');
+    if (pickedImage != null) {
+      setState(() {
+        _image = File(pickedImage.path);
+        });
+        }}
  
   var formkey = GlobalKey<FormState>();
 
@@ -38,10 +56,12 @@ class _RegistrationState extends State<Registration> {
   final TextEditingController adarController = TextEditingController();
 
   Color bC = Colors.black26;
+  String isGenderselected = "";
 
   String selectedValue = '';
   String selectedDob = 'Select DOB';
   bool isDobSelected = false;
+  Color c = Colors.black;
 
   final dropdownItem = [
     "",'Male','Female','Other'
@@ -109,7 +129,9 @@ SizedBox(
 
                 Container(
                   decoration: BoxDecoration(
-                    border: Border.all(),
+                    border: Border.all(
+                      color: c
+                    ),
                     borderRadius: BorderRadius.circular(10)
                   ),
                   child: Padding(
@@ -123,6 +145,7 @@ SizedBox(
                       items: dropdownItem.map((e) => DropdownMenuItem(child: Text(e),value: e,)).toList(),
                       onChanged: (value) {
                       setState(() {
+                        isGenderselected = value!;
                         selectedValue = value!;
                       });
                     }),
@@ -199,6 +222,24 @@ SizedBox(
                 SizedBox(
                   height: 5,
                 ),
+
+                Container(decoration: BoxDecoration(border: Border.all(color: Color.fromARGB(255, 47, 1, 146)),borderRadius: BorderRadius.circular(9)),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(_image.path.split('/').last),
+                        Container(child: ElevatedButton(onPressed: (){
+                        _openImagePicker();
+                        }, child: Text("Choose file"))),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(height: 5,),
+
+
                 customtextfield(
                   controller: emailController,
                    validator: (value) {
@@ -297,7 +338,11 @@ ValueListenableBuilder(valueListenable: visibility1, builder: (context, value, c
                     width: 200,
                     child: ElevatedButton(
                         onPressed: () {
-                          Navigator.push(context,MaterialPageRoute(builder: (context)=> Login()));
+                          
+                          setState(() {
+                            isGenderselected == ""? c = Colors.red:c= Colors.black;
+                          });
+                          // Navigator.push(context,MaterialPageRoute(builder: (context)=> Login()));
                           if (formkey.currentState!.validate() && isDobSelected == true) {
                             print("jgfv");
                           }
