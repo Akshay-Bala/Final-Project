@@ -14,7 +14,7 @@ String baseurl='http://192.168.1.48:5000';
     
 
     try {
-      Response response = await dio.post(
+      Response response = await dio.get(
         '$baseurl/logincheck?Username=$username&Password=$password',
         // data: {
         //   'username': username,

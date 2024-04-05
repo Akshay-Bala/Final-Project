@@ -52,7 +52,7 @@ class _UserhomeState extends State<Userhome> {
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [
-              Color.fromARGB(255, 248, 249, 249),
+              Color.fromARGB(255, 248, 248, 249),
               Color.fromARGB(255, 31, 2, 145),
             ])),
         child: SingleChildScrollView(

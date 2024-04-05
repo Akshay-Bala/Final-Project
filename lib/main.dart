@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:potholedetect/UpdateProfileScreen.dart';
-import 'package:potholedetect/bottomNavScreen.dart';
-import 'package:potholedetect/editprofile.dart';
-import 'package:potholedetect/forgetpassword.dart';
-import 'package:potholedetect/models/notification.dart';
-import 'package:potholedetect/reportaccidentarea.dart';
-import 'package:potholedetect/reportpothole.dart';
-import 'package:potholedetect/reports.dart';
-import 'package:potholedetect/userhome.dart';
-import 'package:potholedetect/api.dart';
-import 'package:potholedetect/api2.dart';
 import 'package:potholedetect/login.dart';
-import 'package:potholedetect/registration.dart';
 
 
 void main() {
