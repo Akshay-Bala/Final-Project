@@ -1,11 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:potholedetect/editprofile.dart';
+import 'package:potholedetect/utils/api/loginapi.dart';
+import 'package:potholedetect/utils/api/profileapi.dart';
 
-class UpdateProfileScreen extends StatelessWidget {
-  const UpdateProfileScreen({Key? key}) : super(key: key);
+class UpdateProfileScreen extends StatefulWidget {
+ UpdateProfileScreen({Key? key}) : super(key: key);
+
+
+  @override
+  State<UpdateProfileScreen> createState() => _UpdateProfileScreenState();
+}
+
+class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
+
+  @override
+  
+  void initState() {
+   getdata();
+    super.initState();
+  }
+
+  void getdata()async{
+ profileDatas= await profileApi(logId);
+ print(profileDatas);
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
+     //controllers
+// TextEditingController firstnameController = TextEditingController(text: profileDatas![0]["First_name"]);
+// TextEditingController lastnameController = TextEditingController(text: profileDatas![0]["Last_name"]);
+// final TextEditingController genderController = TextEditingController(text: profileDatas![0]["Gender"]);
+// final TextEditingController dobController = TextEditingController(text: profileDatas![0]["Dob"]);
+// final TextEditingController addresscontroller = TextEditingController(text: profileDatas![0]["Address"]);
+// final TextEditingController PhoneController = TextEditingController(text: profileDatas![0]["Phone_number"]);
+// final TextEditingController adarController = TextEditingController(text: profileDatas![0]["Adhaar_no"]);
    // final controller = Get.put(ProfileController());
     return Scaffold(
       appBar: AppBar(
@@ -28,17 +59,6 @@ class UpdateProfileScreen extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                         child: const Image(image: AssetImage('assets/images/bg.jpg'))),
                   ),
-                  // Positioned(
-                  //   bottom: 0,
-                  //   right: 0,
-                  //   child: Container(
-                  //     width: 35,
-                  //     height: 35,
-                  //     decoration:
-                  //     BoxDecoration(borderRadius: BorderRadius.circular(100), color: Colors.black),
-                  //     child: const Icon(Icons.camera, color: Colors.brown, size: 20),
-                  //   ),
-                  // ),
                 ],
               ),
               const SizedBox(height: 50),
@@ -46,38 +66,45 @@ class UpdateProfileScreen extends StatelessWidget {
               // -- Form Fields
               Form(
                 child: Column(
+                  
                   children: [
                     TextFormField(
+                     // controller: firstnameController,
                       readOnly: true,
-                      decoration: const InputDecoration(
-                          label: Text("Full Name"), prefixIcon: Icon(Icons.person)),
+                      decoration:  InputDecoration(
+                          label: Text("Name"), prefixIcon: Icon(Icons.person)),
                     ),
                      SizedBox(height: 20),
                     TextFormField(
+                     // controller: addresscontroller,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Address"), prefixIcon: Icon(Icons.house)),
                     ),
                      SizedBox(height: 20),
                      TextFormField(
+                      //controller: genderController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Gender"),prefixIcon: Icon(Icons.person)),
                     ),
                      SizedBox(height: 20),
                      TextFormField(
+                      //controller:dobController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Date of Birth"),prefixIcon: Icon(Icons.calendar_month)),
                     ),
                      SizedBox(height: 20),
                     TextFormField(
+                      //controller: PhoneController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text('PhoneNo'), prefixIcon: Icon(Icons.phone)),
                     ),
                      SizedBox(height: 20),
                      TextFormField(
+                      //controller: adarController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Adhaar No"),prefixIcon: Icon(Icons.document_scanner_outlined)),
@@ -138,3 +165,5 @@ class UpdateProfileScreen extends StatelessWidget {
     );
   }
 }
+
+List<Map<String,dynamic>>? profileDatas=[];

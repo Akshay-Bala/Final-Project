@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:potholedetect/UpdateProfileScreen.dart';
 import 'package:potholedetect/login.dart';
+import 'package:potholedetect/utils/api/profileapi.dart';
 
 class ChangePassword extends StatelessWidget {
   ChangePassword({Key? key}) : super(key: key);
@@ -19,7 +21,9 @@ class ChangePassword extends StatelessWidget {
             TextFormField(
               decoration: InputDecoration(
                 labelText: "Current Password",
-                border: OutlineInputBorder(),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8)
+                ),
               ),
               obscureText: true,
               validator: (value) {
@@ -33,8 +37,11 @@ class ChangePassword extends StatelessWidget {
             SizedBox(height: 20),
             TextFormField(
               decoration: InputDecoration(
+                
                 labelText: "New Password",
-                border: OutlineInputBorder(),
+                border:OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
               ),
               obscureText: true,
               validator: (value) {
@@ -46,29 +53,16 @@ class ChangePassword extends StatelessWidget {
               },
             ),
             SizedBox(height: 20),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: "Confirm New Password",
-                border: OutlineInputBorder(),
-              ),
-              obscureText: true,
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please confirm your new password';
-                }
-                // Add any additional validation logic here
-                return null;
-              },
-            ),
-            SizedBox(height: 20),
             Container(
               height: 40,
               width: 200,
               child: ElevatedButton(
                 onPressed: () {
+                  print(profileDatas);
+                  //profileApi("2");
                   // Implement your logic for changing the password
                   // You can navigate back to the login page after changing the password
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+                  //Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
                 },
                 child: Text("Change Password"),
                 style: ElevatedButton.styleFrom(

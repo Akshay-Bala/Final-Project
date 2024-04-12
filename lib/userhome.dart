@@ -6,6 +6,7 @@ import 'package:potholedetect/reportaccidentarea.dart';
 import 'package:potholedetect/reportpothole.dart';
 import 'package:potholedetect/reports.dart';
 import 'package:potholedetect/widgets/devicecard.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Userhome extends StatefulWidget {
   Userhome({super.key});
@@ -38,8 +39,11 @@ class _UserhomeState extends State<Userhome> {
       ),
     ),
     IconButton(
-      onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+      onPressed: ()async{
+
+final SharedPreferences prefs = await SharedPreferences.getInstance();
+prefs.clear();
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
       },
       icon: Icon(Icons.logout),
     ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:potholedetect/bottomNavScreen.dart';
+import 'package:potholedetect/custom_widgets/textfield.dart';
 import 'package:potholedetect/main.dart';
 import 'package:potholedetect/utils/common/snackbar.dart';
 
@@ -19,6 +20,7 @@ class _ReportpotholeState extends State<Reportaccidentarea> {
   XFile? selectedImage;
   bool _showError = false;
   Position? position;
+  final TextEditingController areaController = TextEditingController();
 
 
 /// Determine the current position of the device.
@@ -118,6 +120,17 @@ Future<Position> _determinePosition() async {
                                       ):Image.file(File(selectedImage!.path)),
                     )),
                     selectedImage!=null?Text('Tap on image to retake'):Text(''),
+                    SizedBox(height: 20,),
+                    customtextfield(
+                  controller: areaController,
+                  validator: (value) {
+                    if (value.toString().isEmpty) {
+                      return 'Enter the accident zone area';
+                    }
+                    return null;
+                  },
+                  label: "Area",
+                ),
                 SizedBox(height: 20),
                 Container(
                   decoration: BoxDecoration(

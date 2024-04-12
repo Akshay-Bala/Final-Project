@@ -6,6 +6,10 @@ import 'package:potholedetect/bottomNavScreen.dart';
 import 'package:potholedetect/login.dart';
 import 'package:potholedetect/main.dart';
 import 'package:potholedetect/utils/common/snackbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+String logId='';
+
 
 Dio dio = Dio();
 String baseurl='http://192.168.1.48:5000';
@@ -27,6 +31,17 @@ String baseurl='http://192.168.1.48:5000';
       print(response.statusCode);
       String status=response.data['task'];
       String type=response.data['type'];
+       String lid=response.data['lid'].toString();
+
+       // Obtain shared preferences.
+final SharedPreferences prefs = await SharedPreferences.getInstance();
+prefs.setString('lid',lid );
+prefs.setString('type',type );
+
+logId=   await prefs.getString('lid')!;
+print('stored');
+
+
       if (status=='success') {
 
         if (type=='user') {
