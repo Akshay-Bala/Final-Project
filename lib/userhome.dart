@@ -5,6 +5,8 @@ import 'package:potholedetect/login.dart';
 import 'package:potholedetect/reportaccidentarea.dart';
 import 'package:potholedetect/reportpothole.dart';
 import 'package:potholedetect/reports.dart';
+import 'package:potholedetect/utils/api/loginapi.dart';
+import 'package:potholedetect/utils/api/viewreportsapi.dart';
 import 'package:potholedetect/widgets/devicecard.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -100,8 +102,9 @@ prefs.clear();
                 height: 10,
               ),
               InkWell(
-                onTap: (){
-                  navigation:Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reports(),));
+                onTap: ()async{
+                  List<Map<String,dynamic>>?data=await getRepportApi(logId);
+                  navigation:Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reports(repports: data,),));
                 },
                 child: DeviceCard(
                 //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),

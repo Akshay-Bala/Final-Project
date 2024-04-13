@@ -6,6 +6,8 @@ import 'package:geolocator/geolocator.dart';
 import 'package:potholedetect/bottomNavScreen.dart';
 import 'package:potholedetect/custom_widgets/textfield.dart';
 import 'package:potholedetect/main.dart';
+import 'package:potholedetect/utils/api/loginapi.dart';
+import 'package:potholedetect/utils/api/reportpotholeapi.dart';
 import 'package:potholedetect/utils/common/snackbar.dart';
 
 
@@ -80,7 +82,7 @@ Future<Position> _determinePosition() async {
     }
   }
 
-  final TextEditingController Descriptioncontroller = TextEditingController();
+  final TextEditingController descriptioncontroller = TextEditingController();
   final formkey = GlobalKey<FormState>();
 
   @override
@@ -148,7 +150,7 @@ Future<Position> _determinePosition() async {
                 SizedBox(height: 5),
                       Expanded(
                         child: TextFormField(
-                          controller: Descriptioncontroller,
+                          controller: descriptioncontroller,
                           validator: (value) {
                             if (value!.isEmpty) {
                               setState(() {
@@ -179,7 +181,7 @@ Future<Position> _determinePosition() async {
                   Padding(
                     padding: const EdgeInsets.only(left: 8.0),
                     child: Text(
-                      'Field is empty',
+                      'Fill the field',
                       style: TextStyle(color: Colors.red),
                     ),
                   ),
@@ -188,10 +190,22 @@ Future<Position> _determinePosition() async {
                 ),
                 Center(
                   child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
+                    onPressed: ()async {
+                      
                       if (formkey.currentState!.validate() && selectedImage!=null ) {
                         print('bhiakddj');
+
+                        Map<String,dynamic>data={
+
+'logid': logId ,
+'description': descriptioncontroller.text ,
+'lattitude':  position!.latitude,
+'longitude':  position!.longitude,
+'area':  areaController.text,
+
+                        };
+reportPotholeapi(data,selectedImage,context);
+
                       } else {
                         showCustomSnackBar(context, "Fill all the fields",Colors.red);
                       }
