@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:potholedetect/UpdateProfileScreen.dart';
+import 'package:potholedetect/aboutUs.dart';
 import 'package:potholedetect/change_password.dart';
-import 'package:potholedetect/models/notification.dart';
+import 'package:potholedetect/notification.dart';
 import 'package:potholedetect/userhome.dart';
 
 class BottomnavScreen extends StatefulWidget {
@@ -21,8 +22,8 @@ class _BottomnavScreenState extends State<BottomnavScreen> {
       final pages = [
     UpdateProfileScreen(),
     Userhome(),
-    Notifications(),
-    ChangePassword()
+    ChangePassword(),
+    AboutUsScreen()
   ];
     return Scaffold(
       body: ValueListenableBuilder(
@@ -39,8 +40,9 @@ class _BottomnavScreenState extends State<BottomnavScreen> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.person ),backgroundColor: Color.fromARGB(255, 31, 2, 145),label: "Profile"),
           BottomNavigationBarItem(icon: Icon(Icons.home),backgroundColor: Color.fromARGB(255, 31, 2, 145),label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.notification_add),backgroundColor: Color.fromARGB(255, 31, 2, 145),label: "Notifications"),
           BottomNavigationBarItem(icon: Icon(Icons.password),backgroundColor: Color.fromARGB(255, 31, 2, 145),label:"Change Password"),
+          BottomNavigationBarItem(icon: Icon(Icons.messenger_outline),backgroundColor: Color.fromARGB(255, 31, 2, 145),label: "About us"),
+
           ])
        
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:potholedetect/login.dart';
+import 'package:potholedetect/utils/api/forgotpasswordApi.dart';
 
 class ForgotPassword extends StatelessWidget {
   ForgotPassword({Key? key}) : super(key: key);
+  TextEditingController emailcont=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class ForgotPassword extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: emailcont,
               decoration: InputDecoration(
                 labelText: "Email",
                 border: OutlineInputBorder(
@@ -50,12 +53,10 @@ class ForgotPassword extends StatelessWidget {
               height: 40,
               width: 200,
               child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
-                  // Implement your logic for sending password reset email
-                  // You can add a Snackbar to notify the user that the reset email has been sent
+                onPressed: () async{
+              await   forgotPass(emailcont.text,context);
                 },
-                child: Text("Send Password"),
+                child: Text("Send email"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Color.fromARGB(255, 31, 2, 145),
                   foregroundColor: Color.fromARGB(255, 252, 253, 253),

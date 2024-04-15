@@ -41,21 +41,21 @@ class _RegistrationState extends State<Registration> {
 
   //Controllers
 
-  final TextEditingController fistnameController = TextEditingController(text: 'jh');
+  final TextEditingController fistnameController = TextEditingController();
 
-  final TextEditingController lastnameController = TextEditingController(text: 'jh');
+  final TextEditingController lastnameController = TextEditingController();
 
-  final TextEditingController PhoneController = TextEditingController(text: '6564279854');
+  final TextEditingController PhoneController = TextEditingController();
 
-  final TextEditingController addresscontroller = TextEditingController(text: 'vycuyviyvi');
+  final TextEditingController addresscontroller = TextEditingController();
 
-  final TextEditingController emailController = TextEditingController(text: 'ft@gmail.com');
+  final TextEditingController emailController = TextEditingController();
 
-  final TextEditingController passController = TextEditingController(text: 'hello234');
+  final TextEditingController passController = TextEditingController();
 
-  final TextEditingController cpassController = TextEditingController(text: 'hello234');
+  final TextEditingController cpassController = TextEditingController();
 
-  final TextEditingController adarController = TextEditingController(text: '3486420756789465');
+  final TextEditingController adarController = TextEditingController();
 
   Color bC = Colors.black26;
   String isGenderselected = "";

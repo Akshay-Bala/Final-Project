@@ -1,17 +1,35 @@
 import 'package:flutter/material.dart';
+import 'package:potholedetect/utils/api/loginapi.dart';
+import 'package:potholedetect/utils/api/viewNotifiApi.dart';
 import 'package:potholedetect/widgets/devicecard.dart';
 
-class Notifications extends StatelessWidget {
+class Notifications extends StatefulWidget {
   const Notifications({super.key});
 
+  @override
+  State<Notifications> createState() => _NotificationsState();
+}
+
+class _NotificationsState extends State<Notifications> {
+  List<Map<String ,dynamic>>notifications=[];
+
+  @override
+  void initState() {
+    getdata();
+    super.initState();
+  }
+
+  void getdata()async{
+   notifications!= await getNotificationsApi(logId);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Row(
           children: [
-            Text('Notifications',style: TextStyle(color: Colors.white),),
-            Icon(Icons.notifications),
+            Text('About us',style: TextStyle(color: Colors.white),),
+            Icon(Icons.messenger_outline),
             
           ],
         ),

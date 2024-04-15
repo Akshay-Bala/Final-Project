@@ -3,6 +3,8 @@ import 'package:potholedetect/editprofile.dart';
 import 'package:potholedetect/utils/api/loginapi.dart';
 import 'package:potholedetect/utils/api/profileapi.dart';
 
+
+List<Map<String,dynamic>>? profileDatas=[];
 class UpdateProfileScreen extends StatefulWidget {
  UpdateProfileScreen({Key? key}) : super(key: key);
 
@@ -17,11 +19,15 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   
   void initState() {
    getdata();
+   
     super.initState();
   }
 
   void getdata()async{
  profileDatas= await profileApi(logId);
+ setState(() {
+   
+ });
  print(profileDatas);
   }
 
@@ -30,14 +36,21 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   Widget build(BuildContext context) {
 
      //controllers
-// TextEditingController firstnameController = TextEditingController(text: profileDatas![0]["First_name"]);
-// TextEditingController lastnameController = TextEditingController(text: profileDatas![0]["Last_name"]);
-// final TextEditingController genderController = TextEditingController(text: profileDatas![0]["Gender"]);
-// final TextEditingController dobController = TextEditingController(text: profileDatas![0]["Dob"]);
-// final TextEditingController addresscontroller = TextEditingController(text: profileDatas![0]["Address"]);
-// final TextEditingController PhoneController = TextEditingController(text: profileDatas![0]["Phone_number"]);
-// final TextEditingController adarController = TextEditingController(text: profileDatas![0]["Adhaar_no"]);
+
+
    // final controller = Get.put(ProfileController());
+if (profileDatas!.isEmpty) {
+  return Scaffold(body: Center(child: CircularProgressIndicator(),),);
+}
+TextEditingController firstnameController = TextEditingController(text: profileDatas![0]["First_name"]+' '+ profileDatas![0]["Last_name"]);
+TextEditingController lastnameController = TextEditingController(text: profileDatas![0]["Last_name"]??'');
+final TextEditingController genderController = TextEditingController(text: profileDatas![0]["Gender"]??'');
+final TextEditingController dobController = TextEditingController(text: profileDatas![0]["Dob"].toString().substring(0,17)??'');
+final TextEditingController addresscontroller = TextEditingController(text: profileDatas![0]["Address"]??'');
+final TextEditingController PhoneController = TextEditingController(text: profileDatas![0]["Phone_number"].toString()??'');
+final TextEditingController adarController = TextEditingController(text: profileDatas![0]["Adhaar_no"].toString()??'');
+final TextEditingController emailController = TextEditingController(text: profileDatas![0]["Email"]??'');
+   
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 31, 2, 145),
@@ -57,10 +70,12 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                     height: 120,
                     child: ClipRRect(
                         borderRadius: BorderRadius.circular(100),
-                        child: const Image(image: AssetImage('assets/images/bg.jpg'))),
+                        child: Image.network('$baseurl/static/images/${ profileDatas![0]["Photo"]}') 
+                        ),
                   ),
                 ],
               ),
+              
               const SizedBox(height: 50),
 
               // -- Form Fields
@@ -69,42 +84,54 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   
                   children: [
                     TextFormField(
-                     // controller: firstnameController,
+                     controller: firstnameController,
                       readOnly: true,
                       decoration:  InputDecoration(
                           label: Text("Name"), prefixIcon: Icon(Icons.person)),
                     ),
                      SizedBox(height: 20),
                     TextFormField(
-                     // controller: addresscontroller,
+                      controller:emailController,
+                      validator: (value) {
+                        if (value.toString().isEmpty){
+                          return 'invalid';
+                        }
+                        return null;
+                      },
+                      decoration: const InputDecoration(
+                          label: Text("email"), prefixIcon: Icon(Icons.person)),
+                    ),
+                     SizedBox(height: 20),
+                    TextFormField(
+                     controller: addresscontroller,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Address"), prefixIcon: Icon(Icons.house)),
                     ),
                      SizedBox(height: 20),
                      TextFormField(
-                      //controller: genderController,
+                      controller: genderController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Gender"),prefixIcon: Icon(Icons.person)),
                     ),
                      SizedBox(height: 20),
                      TextFormField(
-                      //controller:dobController,
+                      controller:dobController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Date of Birth"),prefixIcon: Icon(Icons.calendar_month)),
                     ),
                      SizedBox(height: 20),
                     TextFormField(
-                      //controller: PhoneController,
+                      controller: PhoneController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text('PhoneNo'), prefixIcon: Icon(Icons.phone)),
                     ),
                      SizedBox(height: 20),
                      TextFormField(
-                      //controller: adarController,
+                      controller: adarController,
                       readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Adhaar No"),prefixIcon: Icon(Icons.document_scanner_outlined)),
@@ -117,7 +144,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () {
-                           Navigator.push(context, MaterialPageRoute(builder: (context)=>Editprofile()));
+                           Navigator.push(context, MaterialPageRoute(builder: (context)=>Editprofile(profiledatas: profileDatas,)));
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromARGB(255, 31, 2, 145),
@@ -134,11 +161,11 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                       children: [
                         const Text.rich(
                           TextSpan(
-                            text: 'Date',
+                            text: ' ',
                             style: TextStyle(fontSize: 12),
                             children: [
                               TextSpan(
-                                  text: '  JoinedAt',
+                                  text: '  ',
                                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12))
                             ],
                           ),
@@ -166,4 +193,3 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   }
 }
 
-List<Map<String,dynamic>>? profileDatas=[];

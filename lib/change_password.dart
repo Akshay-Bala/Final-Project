@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:potholedetect/UpdateProfileScreen.dart';
 import 'package:potholedetect/login.dart';
+import 'package:potholedetect/utils/api/changePasswordApi.dart';
+import 'package:potholedetect/utils/api/loginapi.dart';
 import 'package:potholedetect/utils/api/profileapi.dart';
 
 class ChangePassword extends StatelessWidget {
   ChangePassword({Key? key}) : super(key: key);
+  TextEditingController oldPassController=TextEditingController();
+  TextEditingController newPassController=TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +23,7 @@ class ChangePassword extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             TextFormField(
+              controller: oldPassController,
               decoration: InputDecoration(
                 labelText: "Current Password",
                 border: OutlineInputBorder(
@@ -36,6 +41,7 @@ class ChangePassword extends StatelessWidget {
             ),
             SizedBox(height: 20),
             TextFormField(
+              controller: newPassController,
               decoration: InputDecoration(
                 
                 labelText: "New Password",
@@ -57,12 +63,15 @@ class ChangePassword extends StatelessWidget {
               height: 40,
               width: 200,
               child: ElevatedButton(
-                onPressed: () {
+                onPressed: ()async {
                   print(profileDatas);
                   //profileApi("2");
                   // Implement your logic for changing the password
                   // You can navigate back to the login page after changing the password
                   //Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+               await   changePassword(logId,oldPassController.text,newPassController.text,context);
+               oldPassController.clear();
+               newPassController.clear();
                 },
                 child: Text("Change Password"),
                 style: ElevatedButton.styleFrom(
