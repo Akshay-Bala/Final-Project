@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:potholedetect/bottomNavScreen.dart';
 import 'package:potholedetect/custom_widgets/textfield.dart';
 import 'package:potholedetect/main.dart';
@@ -32,6 +33,7 @@ class _ReportpotholeState extends State<Reportpothole> {
 Future<Position> _determinePosition() async {
   bool serviceEnabled;
   LocationPermission permission;
+  await Permission.location.request();
 
   // Test if location services are enabled.
   serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -46,6 +48,8 @@ Future<Position> _determinePosition() async {
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
     if (permission == LocationPermission.denied) {
+      showCustomSnackBar(context, 'Location permissions are denied', Colors.red);
+      openAppSettings();
       // Permissions are denied, next time you could try
       // requesting permissions again (this is also where
       // Android's shouldShowRequestPermissionRationale 

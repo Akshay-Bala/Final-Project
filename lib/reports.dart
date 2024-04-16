@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:potholedetect/UpdateProfileScreen.dart';
+import 'package:potholedetect/mapview.dart';
 import 'package:potholedetect/utils/api/loginapi.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -36,8 +38,11 @@ class Reports extends StatelessWidget {
               ],
             ),
             trailing: IconButton(onPressed: (){
+              print('sssss'+repports[index]['Latitude'].toString());
+              print(repports[index]['Longitude'].toString());
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Mapview(latitude:repports[index]['Latitude'] ,longitude: repports[index]['Longitude'] ,)));
 
-_launchMaps(repports[index]['latitude'], repports[index]['longitude']);
+// _launchMaps(repports[index]['latitude'], repports[index]['longitude']);
             }, icon: Icon(Icons.location_on_outlined)),
             leading: Image.network('$baseurl/static/images/${repports[index]['Photo']}'),
           ));
@@ -45,19 +50,8 @@ _launchMaps(repports[index]['latitude'], repports[index]['longitude']);
       ),
     );
   }
-  void _launchMaps(latitude, longitude) async {
-  final String googleMapsUrl = 'https://www.google.com/maps?q=latitude,longitude';
-  try {
-    if (await canLaunch(googleMapsUrl)) {
-      await launch(googleMapsUrl);
-    } else {
-      throw 'Could not launch $googleMapsUrl';
-    }
-  } catch (e) {
-    print('Error launching Google Maps: $e');
-    // Handle the error gracefully, e.g., show a snackbar or dialog to inform the user
-  }
-}
+ 
+
 
 
 }
