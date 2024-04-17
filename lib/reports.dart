@@ -34,7 +34,7 @@ class Reports extends StatelessWidget {
               children: [
                 Text(repports[index]['Description']),
                 Text('Replay:'),
-                Text(repports[index]['Reply']==''?'pending':repports[index]['Reply'])
+                Text(repports[index]['Reply']==''?'pending':repports[index]['Reply']??'')
               ],
             ),
             trailing: IconButton(onPressed: (){
