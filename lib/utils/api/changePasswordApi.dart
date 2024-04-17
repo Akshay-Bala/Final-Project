@@ -22,9 +22,9 @@ import 'package:potholedetect/utils/common/snackbar.dart';
     print(response.statusCode);
     if (response.statusCode==200) {
       if (response.data['task']!='Invalid') {
-        showCustomSnackBar(context, 'password changed', Colors.green);
+        showCustomSnackBar(context, 'Password Changed Successfully', Colors.green);
       }else{
-         showCustomSnackBar(context, 'failed to change', Colors.red);
+         showCustomSnackBar(context, 'Failed to Change', Colors.red);
       }
     
    

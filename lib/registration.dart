@@ -41,21 +41,21 @@ class _RegistrationState extends State<Registration> {
 
   //Controllers
 
-  final TextEditingController fistnameController = TextEditingController();
+  final TextEditingController fistnameController = TextEditingController(text:'Akshay');
 
-  final TextEditingController lastnameController = TextEditingController();
+  final TextEditingController lastnameController = TextEditingController(text:'bala');
 
-  final TextEditingController PhoneController = TextEditingController();
+  final TextEditingController PhoneController = TextEditingController(text:'7034178332');
 
-  final TextEditingController addresscontroller = TextEditingController();
+  final TextEditingController addresscontroller = TextEditingController(text:'Kannadikkal');
 
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController emailController = TextEditingController(text:'akshaybala1999@gmail.com');
 
-  final TextEditingController passController = TextEditingController();
+  final TextEditingController passController = TextEditingController(text:'Yahoo@1999');
 
-  final TextEditingController cpassController = TextEditingController();
+  final TextEditingController cpassController = TextEditingController(text:'Yahoo@1999');
 
-  final TextEditingController adarController = TextEditingController();
+  final TextEditingController adarController = TextEditingController(text:'947563926547');
 
   Color bC = Colors.black26;
   String isGenderselected = "";
@@ -66,6 +66,11 @@ class _RegistrationState extends State<Registration> {
   Color c = Colors.black;
 
   final dropdownItem = ["", 'Male', 'Female', 'Other'];
+  bool containsOnlyLetters(String name) {
+  // Regular expression pattern to match only alphabetic characters
+  RegExp regex = RegExp(r'^[a-zA-Z ]+$');
+  return regex.hasMatch(name);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -89,11 +94,15 @@ class _RegistrationState extends State<Registration> {
                     Container(
                       width: mediaquery.width / 2 - 23,
                       child: customtextfield(
+                        
                         controller: fistnameController,
                         validator: (value) {
                           if (value.toString().isEmpty) {
                             return 'Enter your first name';
                           }
+                         else if(containsOnlyLetters(value.toString()) == false){
+                          return "Enter Characters";
+                         }  
                           return null;
                         },
                         label: "First name",
@@ -110,6 +119,9 @@ class _RegistrationState extends State<Registration> {
                           if (value.toString().isEmpty) {
                             return 'Enter your last name';
                           }
+                          else if(containsOnlyLetters(value.toString()) == false){
+                          return "Enter Characters";
+                         }  
                           return null;
                         },
                         label: "Last name",
@@ -118,11 +130,11 @@ class _RegistrationState extends State<Registration> {
                   ],
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 Text("Select Gender"),
                 SizedBox(
-                  height: 3,
+                  height: 5,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -151,7 +163,7 @@ class _RegistrationState extends State<Registration> {
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 InkWell(
                   onTap: () async {
@@ -198,26 +210,29 @@ class _RegistrationState extends State<Registration> {
                     ),
                   ),
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 20),
                 customtextfield(
                   controller: addresscontroller,
                   validator: (value) {
                     if (value.toString().isEmpty) {
                       return 'Enter your address';
                     }
+                    else if(containsOnlyLetters(value.toString()) == false){
+                          return "Enter Characters";
+                         }  
                     return null;
                   },
                   label: "Address",
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 20),
                 customtextfield(
                   controller: PhoneController,
                   validator: (value) {
                     if (value.toString().isEmpty) {
-                      return 'Enter ypur phone number';
+                      return 'Enter your phone number';
                     } else if (!RegExp(r'^[0-9]+$')
                         .hasMatch(value.toString())) {
-                      return 'incorrect';
+                      return 'Enter digits';
                     } else if (value.length < 10 || value.length > 10) {
                       return 'invalid phone number';
                     }
@@ -226,7 +241,7 @@ class _RegistrationState extends State<Registration> {
                   label: "Phone number",
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 Container(
                   decoration: BoxDecoration(
@@ -250,7 +265,7 @@ class _RegistrationState extends State<Registration> {
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 customtextfield(
                   controller: emailController,
@@ -258,7 +273,7 @@ class _RegistrationState extends State<Registration> {
                     if (value.toString().isEmpty) {
                       return 'Enter your e-mail id';
                     } else if (!RegExp(
-                            r'^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+\.[a-z]+$')
+                            r'^[a-z][a-zA-Z0-9+_.-]+@gmail.com')
                         .hasMatch(value.toString())) {
                       return 'incorrect';
                     }
@@ -267,7 +282,7 @@ class _RegistrationState extends State<Registration> {
                   label: "E-mail",
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 customtextfield(
                   controller: adarController,
@@ -277,7 +292,7 @@ class _RegistrationState extends State<Registration> {
                     } else if (!RegExp(r'^[0-9]+$')
                         .hasMatch(value.toString())) {
                       return 'incorrect';
-                    } else if (value.length < 16 || value.length > 16) {
+                    } else if (value.length < 12 || value.length > 12) {
                       return 'invalid adhaar number';
                     }
                     return null;
@@ -285,7 +300,7 @@ class _RegistrationState extends State<Registration> {
                   label: "Adhaar Number",
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 20,
                 ),
                 ValueListenableBuilder(
                   valueListenable: visibility1,
@@ -313,7 +328,7 @@ class _RegistrationState extends State<Registration> {
                     );
                   },
                 ),
-                SizedBox(height: 5),
+                SizedBox(height: 20),
                 ValueListenableBuilder(
                   valueListenable: visibility2,
                   builder: (context, value, child) {

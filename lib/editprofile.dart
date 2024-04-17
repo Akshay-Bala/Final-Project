@@ -19,6 +19,7 @@ class Editprofile extends StatefulWidget {
 }
 
 class _EditprofileState extends State<Editprofile> {
+  var _formkey = GlobalKey<FormState>();
   final ValueNotifier<String?> _pickedImagePathNotifier = ValueNotifier(null);
 
   @override
@@ -35,6 +36,15 @@ class _EditprofileState extends State<Editprofile> {
     }
   }
 
+bool containsOnlyLetters(String name) {
+ 
+  // Regular expression pattern to match only alphabetic characters
+  RegExp regex = RegExp(r'^[a-zA-Z ]+$');
+  return regex.hasMatch(name);
+
+}
+
+
   @override
   Widget build(BuildContext context) {
     TextEditingController firstnameController = TextEditingController(text: widget.profiledatas![0]["First_name"]);
@@ -45,6 +55,8 @@ class _EditprofileState extends State<Editprofile> {
     final TextEditingController PhoneController = TextEditingController(text: widget.profiledatas![0]["Phone_number"].toString());
     final TextEditingController adarController = TextEditingController(text: widget.profiledatas![0]["Adhaar_no"].toString());
     final TextEditingController emailController = TextEditingController(text: widget.profiledatas![0]["Email"]);
+
+     
 
     return Scaffold(
       appBar: AppBar(
@@ -94,17 +106,21 @@ class _EditprofileState extends State<Editprofile> {
                 ],
               ),
               const SizedBox(height: 50),
-
+        
               // -- Form Fields
               Form(
+                key: _formkey,
                 child: Column(
                   children: [
                     TextFormField(
                       controller: firstnameController,
                       validator: (value){
-                        if (value.toString().isEmpty){
-                          return 'invalid';
+                        if (value.toString().isEmpty || value == null){
+                          return 'Enter valid';
                         }
+                        else if(containsOnlyLetters(value.toString()) == false){
+                          return "Enter Characters";
+                         }  
                         return null;
                       },
                       decoration: const InputDecoration(
@@ -115,8 +131,11 @@ class _EditprofileState extends State<Editprofile> {
                       controller: lastnameController,
                       validator: (value) {
                         if (value.toString().isEmpty){
-                          return 'invalid';
+                          return 'Enter sub name';
                         }
+                        else if(containsOnlyLetters(value.toString()) == false){
+                          return "Enter Characters";
+                         }  
                         return null;
                       },
                       decoration: const InputDecoration(
@@ -127,8 +146,13 @@ class _EditprofileState extends State<Editprofile> {
                       controller: emailController,
                       validator: (value) {
                         if (value.toString().isEmpty){
-                          return 'invalid';
+                          return '';
                         }
+                         else if (!RegExp(
+                            r'^[a-z][a-zA-Z0-9+_.-]+@gmail.com')
+                        .hasMatch(value.toString())) {
+                      return 'Enter valid id';
+                    }
                         return null;
                       },
                       decoration: const InputDecoration(
@@ -139,8 +163,12 @@ class _EditprofileState extends State<Editprofile> {
                       controller: addresscontroller,
                       validator: (value){
                         if (value.toString().isEmpty){
-                          return 'invalid';
+                          return 'Enter the address';
                         }
+                        else if(containsOnlyLetters(value.toString()) == false){
+                          return "Enter Characters";
+                         }  
+                    return null;
                         return null;
                       },
                       decoration: const InputDecoration(
@@ -149,21 +177,21 @@ class _EditprofileState extends State<Editprofile> {
                     SizedBox(height: 20),
                     TextFormField(
                       controller: genderController,
-                      // readOnly: true,
+                      readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Gender"),prefixIcon: Icon(Icons.person)),
                     ),
                     SizedBox(height: 20),
                     TextFormField(
                       controller: dobController,
-                      // readOnly: true,
+                      readOnly: true,
                       decoration: const InputDecoration(
                           label: Text("Date of Birth"),prefixIcon: Icon(Icons.calendar_month)),
                     ),
                     SizedBox(height: 20),
                     TextFormField(
                       controller: PhoneController,
-                      // readOnly: true,
+                      readOnly: true,
                       decoration: const InputDecoration(
                           label: Text('PhoneNo'), prefixIcon: Icon(Icons.phone)),
                     ),
@@ -175,13 +203,16 @@ class _EditprofileState extends State<Editprofile> {
                           label: Text("Adhaar No"),prefixIcon: Icon(Icons.document_scanner_outlined)),
                     ),
                     SizedBox(height: 20),
-
+        
                     // -- Form Submit Button
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
                         onPressed: () async{
-                          Map<String,dynamic>data={
+                          print("dfx hi hi");
+                          if (_formkey.currentState!.validate()) {
+                            print("validaryugh");
+                            Map<String,dynamic>data={
                             'loginid':logId,
                             'First_name': firstnameController.text ,
                             'Last_name': lastnameController.text ,
@@ -192,8 +223,9 @@ class _EditprofileState extends State<Editprofile> {
                             'Dob':dobController.text,
                             'Gender':genderController.text,
                           };
-
+        
                           await registerUser(data,_pickedImagePathNotifier.value,context);
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Color.fromARGB(255, 31, 2, 145),
@@ -203,7 +235,7 @@ class _EditprofileState extends State<Editprofile> {
                       ),
                     ),
                     const SizedBox(height: 20),
-
+        
                     // -- Created Date and Clear Button
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,

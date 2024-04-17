@@ -39,7 +39,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
 
 
    // final controller = Get.put(ProfileController());
-if (profileDatas!.isEmpty) {
+if (profileDatas!.length==0) {
   return Scaffold(body: Center(child: CircularProgressIndicator(),),);
 }
 TextEditingController firstnameController = TextEditingController(text: profileDatas![0]["First_name"]+' '+ profileDatas![0]["Last_name"]);
@@ -92,6 +92,7 @@ final TextEditingController emailController = TextEditingController(text: profil
                      SizedBox(height: 20),
                     TextFormField(
                       controller:emailController,
+                      readOnly: true,
                       validator: (value) {
                         if (value.toString().isEmpty){
                           return 'invalid';

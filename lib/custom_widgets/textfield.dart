@@ -14,6 +14,7 @@ class customtextfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      //keyboardType: TextInputType.,
       controller: controller ,
       validator: validator ,
       
