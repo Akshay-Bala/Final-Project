@@ -12,7 +12,8 @@ String logId='';
 
 
 Dio dio = Dio();
-String baseurl='http://192.168.1.48:5000';
+String? ip;
+String baseurl='http://$ip';
 
   Future<void> loginUser(username,password,context) async {
     
