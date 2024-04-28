@@ -29,11 +29,20 @@ class Login extends StatelessWidget {
           child: Form(
             key: formkey,
             child: Container(
+              height: double.infinity,
+              width: double.infinity,
               // decoration: BoxDecoration(image: DecorationImage(image: NetworkImage('https://gabrielsales.com/wp-content/uploads/form-bg.jpg',),fit: BoxFit.cover)),
-              decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/images/bg.jpg'),fit: BoxFit.contain)),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              decoration: BoxDecoration(
+                //color: Colors.amber,
+              image: DecorationImage(
+                alignment: Alignment.topCenter
+                ,image: AssetImage('assets/images/bg.jpg'),fit: BoxFit.contain)
+                ),
+              child: ListView(
+                //mainAxisAlignment: MainAxisAlignment.end,
+                //mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  SizedBox(height: 250,),
                   customtextfield(
                     controller: usernameController,
                     validator: (value) {

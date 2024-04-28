@@ -5,10 +5,20 @@ import 'package:potholedetect/utils/api/changePasswordApi.dart';
 import 'package:potholedetect/utils/api/loginapi.dart';
 import 'package:potholedetect/utils/api/profileapi.dart';
 
-class ChangePassword extends StatelessWidget {
+class ChangePassword extends StatefulWidget {
   ChangePassword({Key? key}) : super(key: key);
+
+  @override
+  State<ChangePassword> createState() => _ChangePasswordState();
+}
+
+class _ChangePasswordState extends State<ChangePassword> {
   TextEditingController oldPassController=TextEditingController();
+
   TextEditingController newPassController=TextEditingController();
+
+  bool isObsecure1 = true;
+   bool isObsecure2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -26,14 +36,22 @@ class ChangePassword extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextFormField(
+                
+                obscureText:isObsecure2,
                 controller: oldPassController,
                 decoration: InputDecoration(
+                  suffixIcon: IconButton(onPressed: (){
+                    setState(() {
+                      isObsecure2? isObsecure2 = false: isObsecure2 = true;
+                    });
+                  }, icon: isObsecure2? Icon(Icons.visibility):Icon(Icons.visibility_off)),
                   labelText: "Current Password",
                   border: OutlineInputBorder(
+                    
                     borderRadius: BorderRadius.circular(8)
                   ),
                 ),
-                obscureText: true,
+                
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your current password';
@@ -47,15 +65,22 @@ class ChangePassword extends StatelessWidget {
               ),
               SizedBox(height: 20),
               TextFormField(
+                
+                obscureText:isObsecure1,
                 controller: newPassController,
                 decoration: InputDecoration(
-                  
+                  suffixIcon: IconButton(onPressed: (){
+                    setState(() {
+                      isObsecure1? isObsecure1 = false: isObsecure1 = true;
+                    });
+                    
+                  }, icon: isObsecure1? Icon(Icons.visibility):Icon(Icons.visibility_off)),
                   labelText: "New Password",
                   border:OutlineInputBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                obscureText: true,
+              
                 validator: (value) {
                   if (value == null || value.isEmpty) {
                     return 'Please enter your new password';

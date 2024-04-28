@@ -112,70 +112,74 @@ prefs.clear();
 ),
 
       body: Container(
+        height: double.infinity,
         decoration: const BoxDecoration(
             gradient: LinearGradient(
                 begin: Alignment.bottomCenter,
                 end: Alignment.topCenter,
                 colors: [
-              Color.fromARGB(255, 248, 248, 249),
+              Color.fromARGB(255, 160, 160, 233),
               Color.fromARGB(255, 31, 2, 145),
             ])),
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),));
-                },
-                child: DeviceCard(
-                  
-                  activeColor:Colors.yellow,
-                  deviceIcon: Icons.warning_rounded,
-                  connectionIcon: Icons.add_a_photo_sharp,
-                  title: 'Report Potholes',
-                  subtitle:
-                      'Send your location of a pothole area you have encountered',
-                  //onActivePressed: toggleCardActiveState(),
-                  initialActiveState: false,
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: () {
-                  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportaccidentarea(),));
-          
-                },
-                child: DeviceCard(
-                    activeColor: Colors.yellow,
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Column(
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),));
+                  },
+                  child: DeviceCard(
+                    
+                    activeColor:Colors.yellow,
                     deviceIcon: Icons.warning_rounded,
                     connectionIcon: Icons.add_a_photo_sharp,
-                    initialActiveState: false,
-                    //isActive: true ,
-                    title: 'Report Accident prone area',
+                    title: 'Report Potholes',
                     subtitle:
-                        'Send your location of a accident prone area you have encountered'),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              InkWell(
-                onTap: ()async{
-                  List<Map<String,dynamic>>?data=await getRepportApi(logId);
-                  navigation:Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reports(repports: data,),));
-                },
-                child: DeviceCard(
-                //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),
-                    activeColor: Colors.yellow,
-                    deviceIcon: Icons.warning_rounded,
-                    connectionIcon: Icons.add_alert,
+                        'Send your location of a pothole area you have encountered',
+                    //onActivePressed: toggleCardActiveState(),
                     initialActiveState: false,
-                    //isActive:true ,
-                    title: 'View Report Status',
-                    subtitle: 'Current status of the reported complaints'),
-              )
-            ],
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: () {
+                    navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportaccidentarea(),));
+            
+                  },
+                  child: DeviceCard(
+                      activeColor: Colors.yellow,
+                      deviceIcon: Icons.warning_rounded,
+                      connectionIcon: Icons.add_a_photo_sharp,
+                      initialActiveState: false,
+                      //isActive: true ,
+                      title: 'Report Accident prone area',
+                      subtitle:
+                          'Send your location of a accident prone area you have encountered'),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                InkWell(
+                  onTap: ()async{
+                    List<Map<String,dynamic>>?data=await getRepportApi(logId);
+                    navigation:Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reports(repports: data,),));
+                  },
+                  child: DeviceCard(
+                  //  navigation: Navigator.of(context).push(MaterialPageRoute(builder: (context) => Reportpothole(),)),
+                      activeColor: Colors.yellow,
+                      deviceIcon: Icons.warning_rounded,
+                      connectionIcon: Icons.add_alert,
+                      initialActiveState: false,
+                      //isActive:true ,
+                      title: 'View Report Status',
+                      subtitle: 'Current status of the reported complaints'),
+                )
+              ],
+            ),
           ),
         ),
       ),
