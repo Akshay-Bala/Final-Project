@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:potholedetect/login.dart';
 import 'package:potholedetect/utils/api/loginapi.dart';
+import 'package:potholedetect/utils/common/snackbar.dart';
 
 
   Dio dio = Dio();
@@ -31,14 +32,14 @@ import 'package:potholedetect/utils/api/loginapi.dart';
     print(response.statusCode);
     if (response.statusCode==200) {
       if (response.data['task']=='success') {
-
+        showCustomSnackBar(context, 'Registration Successful', Colors.green);
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));
         
       }
       
     }
     else{
-      print('register failed');
+      print('Registration Failed');
     }
     print(response);
     

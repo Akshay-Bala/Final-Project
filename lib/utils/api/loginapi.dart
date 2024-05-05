@@ -46,6 +46,7 @@ print('stored');
       if (status=='success') {
 
         if (type=='user') {
+          showCustomSnackBar(context,'Login Successful',Colors.green);
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
         }else{
           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>Login()));

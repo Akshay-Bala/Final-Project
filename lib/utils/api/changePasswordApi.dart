@@ -31,7 +31,7 @@ import 'package:potholedetect/utils/common/snackbar.dart';
       
     }
     else{
-      print('sending failed');
+      print('Sending failed');
     }
     print(response);
     

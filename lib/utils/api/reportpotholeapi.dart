@@ -32,7 +32,7 @@ import 'package:potholedetect/utils/common/snackbar.dart';
 
     print(response.statusCode);
     if (response.statusCode==200) {
-    showCustomSnackBar(context, 'Repport Send', Colors.green);
+    showCustomSnackBar(context, 'Report Send Successfully', Colors.green);
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>BottomnavScreen()));
       
     }
