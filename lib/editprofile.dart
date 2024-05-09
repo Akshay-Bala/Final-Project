@@ -144,6 +144,7 @@ bool containsOnlyLetters(String name) {
                     SizedBox(height: 20),
                     TextFormField(
                       controller: emailController,
+                      readOnly: true,
                       validator: (value) {
                         if (value.toString().isEmpty){
                           return '';
@@ -191,7 +192,6 @@ bool containsOnlyLetters(String name) {
                     SizedBox(height: 20),
                     TextFormField(
                       controller: PhoneController,
-                      readOnly: true,
                       decoration: const InputDecoration(
                           label: Text('PhoneNo'), prefixIcon: Icon(Icons.phone)),
                     ),
@@ -222,9 +222,10 @@ bool containsOnlyLetters(String name) {
                             'Adhaar_no ':adarController.text,
                             'Dob':dobController.text,
                             'Gender':genderController.text,
+                            
                           };
         
-                          await registerUser(data,_pickedImagePathNotifier.value,context);
+                          await registerUser(data,_pickedImagePathNotifier.value??"/data/user/0/com.example.potholedetect/cache/f3331f68-1b9c-47bc-a8a1-ccb4d794550f/Screenshot_2024-05-09-10-59-03-386_com.google.android.apps.maps.jpg",context);
                           }
                         },
                         style: ElevatedButton.styleFrom(

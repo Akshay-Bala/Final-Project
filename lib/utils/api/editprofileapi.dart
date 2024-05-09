@@ -10,6 +10,7 @@ import 'package:potholedetect/utils/common/snackbar.dart';
   Dio dio = Dio();
 
  Future<void> registerUser(Map<String, dynamic> data,  image,context) async {
+  print("img: ${image}");
   final String apiUrl = '$baseurl/edit_registration';
 
   try {
@@ -46,6 +47,7 @@ import 'package:potholedetect/utils/common/snackbar.dart';
     print(response);
     
   } catch (e) {
+    print("exception");
     print(e);
   
   }
